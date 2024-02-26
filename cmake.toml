@@ -1,0 +1,25 @@
+# Reference: https://build-cpp.github.io/cmkr/cmake-toml
+[project]
+name = "sfl-test"
+
+[variables]
+INSTALL_GTEST = false
+BUILD_GMOCK = false
+BENCHMARK_ENABLE_TESTING = false
+BENCHMARK_ENABLE_INSTALL = false
+BENCHMARK_USE_BUNDLED_GTEST = false
+
+[fetch-content.sfl]
+git = "https://github.com/slavenf/sfl-library.git"
+tag = "4a9fb569778d492158e1325a81f1d58b4ca7e63a"
+
+[fetch-content.GBenchmark]
+git = "https://github.com/google/benchmark"
+tag = "v1.6.1"
+
+[target.sfl-test]
+type = "executable"
+sources = ["src/sfl-test/**.cpp"]
+headers = ["src/sfl-test/**.hpp"]
+compile-features = ["cxx_std_17"]
+link-libraries = ["sfl::sfl", "benchmark::benchmark"]
